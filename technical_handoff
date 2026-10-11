@@ -1,0 +1,118 @@
+TECHNICAL HANDOFF — QWEN3.5-9B QUANTIZATION STUDY
+Snapshot: 2026-10-10 19:06:00 PDT
+
+PURPOSE AND STATE
+Compare Qwen3.5-9B weight quantization at Q8_0, Q6_K, Q5_K_M, Q4_K_M and Q3_K_M. Measure task accuracy/reliability, output tokens, prompt and decoding speed, latency and GPU memory, and examine task-specific failure patterns. Q8 is a quantized reference, not full precision. This is task performance under a fixed inference budget, not a universal intelligence score. No claim of zero training contamination or independently proven upstream conversion equivalence.
+All five GGUF files have publisher size and SHA256 verification. The current full Q8 benchmark is running_q8. Snapshot progress: 5/180 attempts completed, 4 primary-correct, 0 truncated, 0 infrastructure errors. These are partial counts, not a final accuracy estimate. Original run: study_v2_Q8_0_full_20261011T015833Z. It continues on the original machine; exporting does not stop it. Results created AFTER this snapshot are absent.
+
+AUTHORITATIVE EXPERIMENT SETTINGS
+Model: Qwen3.5-9B (text inference; no vision projector).
+Model repository: bartowski/Qwen_Qwen3.5-9B-GGUF
+Pinned model repository revision: 182be2fd6c7bc44887d88a91cb03ff009cc9f549
+llama.cpp commit: 23b0202a189c44a54625aadcb37a946dd1d6278d (build b11552).
+Context capacity: 32768 tokens, one sequence/slot. Actual prompt lengths vary.
+Output cap: 12288 tokens TOTAL across generated reasoning and final answer.
+Reasoning: ON; fixed reasoning budget 2048 tokens. Budget exhaustion forces the transition toward final output. It is not the same as disabling reasoning and is not a guarantee of ideal reasoning.
+Temperature: 1.0; top_p: 0.95; top_k: 20; min_p: 0.0; presence penalty: 1.5.
+Three trials; seed = 73191 + zero-based trial index (73191, 73192, 73193).
+Same seeded shuffled task order and same task/seed pairings across quantizations.
+Every task is a fresh single user-message request, no conversation history, no answer key, no system message added by the runner.
+max_tokens = 12288; stream = true; include_usage = true; cache_prompt = false.
+Request timeout: 1800 seconds.
+GPU layers: all; automatic fitting: off; input embedding weight override: token_embd.weight=CUDA0.
+KV key/value precision: f16/f16; batch: 2048; microbatch: 512.
+CPU generation threads: 16; prompt threads: 16. Original launcher used defaults that resolved to 16; exported launcher sets them explicitly.
+Flash Attention: auto. CUDA graphs enabled in the observed build. No speculative decoding or LoRA configured.
+Server: http://127.0.0.1:8080; Jinja chat template enabled; parallel sequences: 1.
+Other runtime defaults are preserved in environment/server_props_at_export.json, server-help.txt and per-run metadata, rather than guessed. GPU sampling every second; sampled peak is whole-device VRAM including desktop/other processes, not a guaranteed instantaneous/model-only peak.
+Generation time excludes code scoring. First streamed content or reasoning token gives TTFT. Server timings separately report prompt and decoding throughput when available; end-to-end token rate includes prefill. Total completion tokens include reasoning; do not invent separate reasoning/final token counts from character lengths.
+
+ORIGINAL MACHINE / BUILD
+Ubuntu 24.04.4 LTS; kernel 7.0.0-34-generic; AMD Ryzen 9 7950X (16 cores / 32 threads); 32GB RAM; NVIDIA RTX 4060 Ti 16GB (16380 MiB reported).
+NVIDIA driver 595.91.07. CUDA TOOLKIT/nvcc 12.0.140; NVIDIA-SMI's CUDA 13.2 field describes driver support, not the toolkit used to build.
+Release CUDA build with gcc-12/g++-12, CMake and Ninja. Python 3.12. Exact observed packages and build settings are in environment/. Core runner/scorer need Python standard library; model downloading needs huggingface_hub 0.36.2. Installed CPU Torch is not required for llama.cpp/GGUF inference.
+Latest GPU placement: all 34 layers AND input embedding weights on CUDA; model buffer 9093.30 MiB, KV cache 1024 MiB, recurrent state 50.25 MiB. Whole-device use observed around 11174 MiB while idle after warmup. CUDA_Host/ordinary CPU bookkeeping buffers can remain; they are not model-weight offloading.
+Earlier 32K fit stress tests used host-mapped input embeddings and are historical diagnostics, not proof of the later fully-CUDA configuration at maximal occupancy. Each destination/quantization must verify placement and memory for its own kept run.
+
+EXAM AND OBJECTIVE SCORING
+Study v2.1: 60 tasks, comprising 20 mathematical/logical reasoning, 20 data reasoning, 10 instruction-following and 10 coding tasks. It is NOT a 30-math/30-code suite.
+Public prompts: datasets/study_v2/public/tasks.json; keys and coding tests: datasets/study_v2/private/answer_keys.json. Plain-text reviewer copies are in exam/.
+The 50 non-coding keys were independently recomputed from the prompts. The ten references passed all 4076 hidden coding cases, both locally and in the actual Docker sandbox. Reviewer also rejected 26 plausible wrong programs.
+Non-coding primary success requires exact required JSON schema/types, correct answer and valid FINAL_JSON presentation. Numeric-equivalent float/string answers may receive secondary substantive credit while failing schema. Duplicate keys, invalid/non-finite JSON, non-stop finish reasons, truncation and missing final answers have distinct failure handling.
+Coding: FINAL_CODE fenced Python function; deterministic hidden-case execution, no input mutation, plus specified output-alias constraints. Equivalent valid solutions accepted. Imports, dangerous operations and private attributes forbidden; literal module constants and postponed annotations permitted. Allowed builtins are disclosed in the coding prompts.
+Model code NEVER executes on the host. Docker is used by the evaluator, not by the model. Pinned image: python@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1
+Sandbox: network disabled, read-only root, unprivileged uid/gid 65534, capabilities dropped, no-new-privileges, 256MiB RAM/swap, 1 CPU, 32 processes, 10s CPU limit, 20s host wall timeout, limited tmpfs, forced container cleanup. Infrastructure errors are unscored, not counted as model failures. CPU limit/nonzero execution are separate model-code failures.
+Docker preflight, ordinary failure probes, recursion/builtin/constant/annotation checks, 20-second wall-timeout and cleanup checks passed. Proof files are in environment/.
+Primary deterministic scores stay fixed. Review ALL final answers separately for interpretation, preserving disagreements and reasons; generated reasoning is archived, not assumed to reveal every internal computation. Do not silently revise keys after observing quantization results.
+
+PRIOR FAILURES / FIXES (DIAGNOSTIC ONLY)
+1. Original small custom pilot produced low arithmetic/extraction scores. It was insufficient to conclude general model inability; preserve raw pilot and component outcomes.
+2. Published GSM8K, 20-question diagnostic: direct short prompt 5/20 strict correct; post-hoc numeric fallback 8/20; 13 formatting failures. Asking for worked solutions produced 20/20 on the same small sample. Prompt sensitivity and format requirements mattered; this is not a contamination-free accuracy claim.
+3. Reasoning enabled with 4096 context/2048 output: stopped after seven completed questions; three correct and four truncated; no completed wrong numeric answers. Not a full 20-question score.
+4. Four selected truncation retries at 8192 context/6144 output: three correct, one truncated; about 602s total and 16360 output tokens. Selected retries are not representative accuracy estimates.
+5. Unrestricted-reasoning independent calibration repeated reasoning after solving an elementary item. Interrupted, excluded from kept scores. Bounded calibration (2048 reasoning budget, 32768 context/12288 output) passed all four fresh questions; total generation ~309s, no truncation or infrastructure errors. This small pilot checks the pipeline, not difficulty/coverage of the full exam. It preceded moving embeddings to CUDA; a separate all-GPU smoke check passed afterward. Calibration timing is excluded from comparisons.
+6. v1 answer/task and hidden-test defects were revised in v2. v2 sandbox omitted ord/chr/divmod/frozenset/pow and rejected constants/annotations; these were fixed and verified. Bundle-path bug fixed. DAT-06 interval gap added. History and audit records preserve the prior versions; never benchmark using these obsolete keys.
+7. '34/34 layers offloaded' alone left 1030.62 MiB input embeddings host-mapped. Explicit tensor override moved them to CUDA before kept Q8 measurements. Startup evidence is included.
+
+RUNTIME EXPECTATIONS AND REMAINING WORK
+Four easy calibration attempts averaged about 77 seconds. 180 attempts may take roughly four hours and can take longer on difficult tasks; an hour is not a guaranteed duration and no padding is added to force a duration. Three repeats are not 180 independent questions.
+Finish the current Q8 run, review every final answer, then run Q6/Q5/Q4/Q3 identically. Compare task-paired correctness, category changes, format failures/truncation, token use, speed, elapsed time and VRAM. Report task-level uncertainty; do not treat repeated attempts as independent tasks. Dedicated speed workloads must match prompt lengths/context occupancy across formats; a fixed context CAPACITY alone does not standardize performance workloads.
+This bundle contains completed results plus clearly historical/partial records. The runner starts a NEW run; it does not automatically resume partially completed attempts. Do not merge partial snapshots and reruns into one nominal trial. Live services/locks/credentials do not migrate. Root automation and terminal-watch scripts are intentionally omitted.
+
+MODEL FILES (WEIGHTS NOT IN THIS COMPACT BUNDLE)
+Qwen_Qwen3.5-9B-Q8_0.gguf
+  bytes: 9804541984
+  SHA256: b58fe056b5435070240de259f3f981aa38fee96825bbd78c088d5fd90e46f2b5
+  status at export: verified
+Qwen_Qwen3.5-9B-Q6_K.gguf
+  bytes: 7958818848
+  SHA256: 073a9275e65d9c8cd2819cf5f77b99fbaa6e87ba591da6bbaa86ec073a64bfef
+  status at export: verified
+Qwen_Qwen3.5-9B-Q5_K_M.gguf
+  bytes: 7111487520
+  SHA256: a686d88ec1e6881f9bf161526826cd6d6874b7f0e80e0f79acf6144a132c5d7e
+  status at export: verified
+Qwen_Qwen3.5-9B-Q4_K_M.gguf
+  bytes: 6169341984
+  SHA256: d784ce9eda1a5a7b51e8f705a9e6310844bf4f173654d115823c775fdea56d43
+  status at export: verified
+Qwen_Qwen3.5-9B-Q3_K_M.gguf
+  bytes: 5178748960
+  SHA256: 24fccd8416fcdca792f939de4a2240eb57795b0f7a9ba92e62398eab3ec5c11e
+  status at export: verified
+
+HOW TO RESTORE AND BENCHMARK
+1. Extract Benchmark-handoff somewhere writable on a Linux machine with suitable NVIDIA GPU/driver, Python 3.12, CUDA toolkit, git, CMake, Ninja, gcc-12/g++-12, and Docker. The original tested compiler/toolkit combination is above; another platform may need a compatible build procedure. Do not copy the old .venv or old binary and assume compatibility.
+2. From Benchmark-handoff: python3 -m venv .venv
+   .venv/bin/pip install -r requirements-minimal.txt
+3. bash scripts/build_pinned_runtime.sh
+   This checks out the exact runtime commit and builds Release with CUDA. It needs internet for the source repository. No compiled runtime/source checkout is included.
+4. Copy the five verified GGUFs from the original models folder into models/, or:
+   .venv/bin/python scripts/download_quantizations.py
+   The downloader pins the repository revision, verifies size and publisher SHA256. Verify copied files with: sha256sum -c environment/quantized_models.sha256
+5. sudo .venv/bin/python scripts/docker_preflight.py
+   sudo .venv/bin/python scripts/test_docker_wall_timeout.py
+   The exported preflight uses the saved image DIGEST, not a moving tag. The original preflight evidence remains archival. Validate after relocation; these commands produce new evidence.
+6. .venv/bin/python scripts/validate_study_v2.py
+7. In a separate session, start the model, retaining its startup log:
+   bash scripts/start_server.sh models/Qwen_Qwen3.5-9B-Q8_0.gguf -lv 5 > environment/new_server.log 2>&1
+   Verify all layers/input embeddings, KV and recurrent state are CUDA, and no silent offload/fit adjustment. Do not run another model/GPU workload during kept measurements. Never feed private keys/tests to the model.
+8. sudo .venv/bin/python scripts/run_study_v2.py --quant Q8_0 --repetitions 3
+   Optional independent four-question check first: append --pilot (excluded from study).
+   The runner validates context/model/server flags and rejects an unverified model. Portable runner expects local Linux /proc access and Docker. It uses root for evaluator access without giving the model any Docker access. If Docker is already authorized for your user, sudo may be unnecessary.
+9. .venv/bin/python scripts/analyze_study_v2.py raw_results/NEW_RUN_DIRECTORY
+   This writes analysis.json and review.html. The review page contains final responses, scores and collapsible generated reasoning.
+10. Stop only the server you started, change GGUF, repeat steps 7-9 with --quant Q6_K, Q5_K_M, Q4_K_M, Q3_K_M. Keep settings and seeds fixed; retain GPU placement evidence for each. Do not run two study runners simultaneously.
+
+TO RESTART THIS CONVERSATION WITH ANOTHER ASSISTANT
+Give that assistant this document and the Benchmark-handoff folder/zip. Ask it to first read config/experiment.json, datasets/study_v2/manifest.json and the newest run's metadata/summary. Continue the quantization study using the audited suite and preserved controls. Keep historical failures distinct from kept comparison data. Check original-machine progress or obtain a newer snapshot before assuming the exported partial Q8 results are final. Keep answer keys strictly outside benchmark model prompts.
+
+BUNDLE CONTENTS
+scripts/: minimal runtime build/download/start/benchmark/scoring/analysis/validation tools; no terminal-watch or background service launch utilities.
+datasets/study_v2/: exact public exam, private key/test data, hashes and audit records; separate calibration and GSM8K diagnostic data.
+config/: current settings and previous configurations, retained for comparison. Current experiment.json is authoritative.
+raw_results/ and processed_results/: saved prior failures/diagnostics, calibration outputs and current partial kept results at snapshot time.
+environment/: model hashes/pins, current server properties/build/hardware evidence, Docker evidence; original running lock/service state omitted.
+history/: obsolete test/key/scorer snapshots for explaining fixes; not inputs to current benchmarking.
+exam/: plain-text exam with and without official answers/reference solutions.
+FILES.sha256: checksums of all exported files other than the checksum list itself; run sha256sum -c FILES.sha256 before modifying the export.
