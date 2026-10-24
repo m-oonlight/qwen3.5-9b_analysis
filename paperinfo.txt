@@ -1,0 +1,99 @@
+**I see the paper as a study of how the model’s abilities change under compression: what remains reliable, what becomes fragile, and what eventually fails.** The aggregate exam score is only the starting point.
+
+Higher precision preserves more information in the stored weights; it does not give the model new training. Our experiment asks whether that difference translates into better demonstrated reasoning—and where.
+
+**We would analyze the model at three levels.**
+
+| Level | Main question | Evidence |
+|---|---|---|
+| Overall capability | Does compression change performance? | Correctness and consistency across the entire exam |
+| Specific capabilities | Which kinds of problems change most? | Results within mathematical and coding task families |
+| Individual failures | What went wrong on a particular problem? | Exact answer, checkable working, executable code and failed test cases |
+
+This structure connects the broad result to concrete examples. A claim such as “Q3 performs worse” becomes more informative if we can establish that its losses concentrate in exhaustive enumeration, constraint tracking or coding edge cases.
+
+**The patterns we should look for**
+
+1. **Stable capability.** A task family remains similarly accurate across quantizations. This is useful evidence that substantial compression can preserve that tested ability.
+
+2. **Increasing fragility.** Average performance may decline slightly while consistency declines substantially. A problem that Q8 solves reliably might become a problem Q4 solves only occasionally.
+
+3. **Concentrated failure.** Most abilities remain intact, but one family deteriorates. For example, a model might still perform arithmetic correctly while increasingly omitting valid cases from an enumeration problem.
+
+4. **A sharper decline at lower precision.** Performance might remain stable through moderate compression and fall more substantially afterward. We should investigate this possibility without forcing the results into a predetermined “breaking point.”
+
+5. **Changes in the kind of mistake.** The same problem might produce different failure modes across quantizations: correct solution with invalid formatting, missed condition, incorrect intermediate calculation, or code that crashes.
+
+6. **Exceptions and improvements.** A compressed variant may solve questions that Q8 misses. We must retain these cases and check whether they repeat across trials. Otherwise, we would exaggerate deterioration by counting only changes in the expected direction.
+
+**Following individual questions is especially valuable.** For illustration—not an observed result—a question might be solved in all three Q8 trials, all three Q6 trials, one Q4 trial and no Q2 trials. That would suggest declining reliability on that particular problem. We then examine whether similar trajectories occur across related questions.
+
+One question would be an example. A repeated pattern across independently constructed questions would support a broader finding.
+
+**What the task-level analysis would examine**
+
+For mathematical problems, we can distinguish errors such as:
+
+- Correct method, incorrect arithmetic.
+- Missing or violating a stated constraint.
+- Returning some valid solutions but failing to find all of them.
+- Finding a feasible answer without establishing that it is optimal.
+- Mishandling a boundary case.
+- Giving a correct result in the wrong required structure.
+
+For coding, we can distinguish:
+
+- An incorrect algorithm.
+- A correct algorithm implemented incorrectly.
+- Misunderstanding the input or output interface.
+- Passing ordinary cases while failing duplicates, empty inputs, cycles or other edge cases.
+- Violating the execution policy.
+- Producing correct code with invalid response formatting.
+
+These categories need written definitions. Some responses will receive multiple labels, and reviewer disagreements should remain visible.
+
+Where intermediate working is objectively checkable, we can identify its first invalid step. However, generated explanations do not reveal every internal computation, so that evidence cannot establish that a particular attention layer or expert caused the failure.
+
+**Correctness and compliance must remain separate measurements.**
+
+Our partial Q4 run demonstrates why: five strict failures contained demonstrated correct solutions. Treating all seven strict failures as lost reasoning ability would misrepresent the evidence.
+
+For the final study, we should declare in advance how we measure:
+
+- **Solution correctness:** the mathematical answer or unchanged program is correct under the specified evaluation.
+- **Strict response correctness:** the solution is correct and follows the required response contract.
+- **Consistency:** how reliably the model succeeds across the three trials.
+
+Extraction rules must be fixed before collection. We can evaluate clearly identifiable, unchanged code; we should not repair it and then credit the original response.
+
+**The main figures would tell a connected story.**
+
+| Figure | Purpose |
+|---|---|
+| Correctness versus quantization | Establish the overall pattern, with uncertainty |
+| Task-family heatmap relative to Q8 | Show which capabilities are most affected |
+| Question-by-quantization grid | Show stable, fragile, failing and reversing trajectories |
+| Failure-type rates | Explain what accounts for the score differences |
+| Across-trial consistency | Distinguish dependable performance from occasional success |
+
+Token use and timing provide supporting behavioral evidence. For example, we can test whether unsuccessful responses become longer or more repetitive. More generated text should not automatically be interpreted as deeper reasoning.
+
+**What would make the conclusions defensible**
+
+We compare the same questions under identical settings, preserve all outcomes, and report both deterioration and improvement. Uncertainty should account for repeated observations on the same questions and similarities within task families.
+
+We also need to distinguish:
+
+- A clearly measured difference.
+- A result too uncertain to interpret confidently.
+- Evidence that two configurations perform within a predefined acceptable margin.
+
+Failing to detect a difference does not by itself establish that two quantizations are equivalent.
+
+Q8 remains a practical **quantized reference**, rather than full-precision ground truth. Conclusions will concern this model, these GGUF configurations, this task suite and the fixed generation budget.
+
+**A provisional abstract could be:**
+
+> We investigate how progressively stronger GGUF quantization changes the tested capabilities and failure behavior of Qwen3.6-35B-A3B. Using an independently audited mathematical and algorithmic task suite, we compare quantization configurations under identical inference settings and paired sampling seeds. Evaluation separates solution correctness, response compliance and consistency across repeated trials. Task-level analyses examine which capabilities remain stable, which become unreliable, and whether failures concentrate in particular operations, constraints or coding edge cases. We analyze correctness transitions across precision levels and distinguish substantive errors from presentation, execution-policy and generation-budget failures. Token usage, latency and memory provide supporting context for observed behavioral changes.
+
+That is a methods-focused draft. The final abstract should replace general aims with the strongest measured findings and their effect sizes. **The paper’s contribution should be a supported account of how performance changes—not a conclusion that compression necessarily makes every ability worse.**
