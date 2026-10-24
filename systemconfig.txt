@@ -1,0 +1,302 @@
+QWEN3.6-35B-A3B — CURRENT REPLICATION SNAPSHOT
+2026-10-24T16:24:22-07:00
+
+STATUS AND SCOPE
+This records the current configured candidate condition, not a completed/frozen benchmark protocol. environment/standard_lock.json is still qualifying. Q8 passed the 30-CPU-expert-layer memory probes. The matching Q4 probe had approximately 111.87MiB process swap, so the workflow stopped before freezing the common profile or running the Q8 pilot. Keep this status with the settings; successful Q8 loading is not validation of every format.
+The final 200-plus-question exam and its calibration package are not yet integrated or frozen. Current evaluator hashes refer to the inherited audited 60-task v2.1 suite. Budgets may change after disjoint calibration, but must then be fixed for every compared quantization.
+Current downloads run four transfers simultaneously. No inference server or benchmark is running in this snapshot. Stop downloads and unrelated heavy workloads before kept timing measurements.
+
+HOST HARDWARE AND SOFTWARE
+GPU: NVIDIA GeForce RTX 4060 Ti, 16GB class; driver reports 16380MiB total. PCI 00000000:01:00.0. Current power limit 165W.
+CPU: AMD Ryzen 9 7950X; one socket, 16 physical cores, 32 hardware threads; x86_64. CPU boost enabled. Single reported NUMA node.
+RAM: 64GB class installed; Linux MemTotal 66502127616 bytes (~61.94GiB). Older 32GB handoff records do not describe this current machine. DIMM speed/timings were not captured in this snapshot.
+Swap: /swap.img, 8589930496 bytes (~8GiB); vm.swappiness=60. Target qualification is zero MODEL-PROCESS swap, not necessarily zero unrelated system swap.
+Storage: SK hynix SHPP41-2000GM NVMe, 2TB class; roughly 1.4TiB free when inspected.
+OS: Ubuntu 24.04.4 LTS; kernel 7.0.0-38-generic; glibc 2.39 (Ubuntu 2.39-0ubuntu8.9).
+NVIDIA driver: 595.91.07. nvidia-smi reports CUDA 13.2 DRIVER SUPPORT; installed nvcc toolkit is CUDA 12.0.140. These are different version meanings.
+Compiler used by llama.cpp: GNU 12.4.0; configured gcc-12/g++-12. CUDA compiler /usr/bin/nvcc.
+Python used by workflow: 3.12.3. Minimal Python dependency for model downloads: huggingface_hub==0.36.2. The runner/evaluator/client mostly use the Python standard library.
+Docker: 29.1.3 (Ubuntu package build 29.1.3-0ubuntu3~24.04.2). Docker runs generated model code for grading, not model inference.
+CPU governors currently reported: powersave. The launcher sets no CPU affinity, CPU frequency lock or GPU clock lock. Current launcher performs no explicit power-limit adjustment. Different hardware, drivers or kernels can change speed and sampled outputs even with the same seed.
+
+MODEL IDENTITY
+Model: Qwen3.6-35B-A3B (MoE). Text-only requests in this study; no vision projector, tools, retrieval or external assistance.
+GGUF repository: bartowski/Qwen_Qwen3.6-35B-A3B-GGUF
+Immutable repository revision: 5c2410d71524f4f72b023ce8daf7a80528226d5f
+Use the exact filenames below, not other publisher variants or mtp-prefixed files. Embedded tokenizer and Jinja chat template come from the GGUF. No custom template override is supplied.
+Q8_0 is the practical within-model quantized reference, not BF16/FP32 ground truth. GGUF labels are mixed tensor recipes, not uniform precision for all tensors. Publisher file hashes establish file identity, not identical quantization calibration procedures.
+
+Qwen_Qwen3.6-35B-A3B-Q6_K.gguf
+  bytes: 30947309184
+  SHA256: a97ef79439194d8ec722bc0b6c316f0c41c0b477b35bbae8177c772ecbb0eb91
+  status at snapshot: downloading
+Qwen_Qwen3.6-35B-A3B-Q5_K_M.gguf
+  bytes: 25913185920
+  SHA256: ec438d1326eb11d8bb94785c54739cd4b60b01ae32bd8532e232a046b19d296d
+  status at snapshot: downloading
+Qwen_Qwen3.6-35B-A3B-Q4_K_M.gguf
+  bytes: 22285080192
+  SHA256: b46fedd33e0bfb0cae308aa3c158d0a4b2c4a1d2185a1ed6f093cdaf39064772
+  status at snapshot: verified
+Qwen_Qwen3.6-35B-A3B-Q3_K_M.gguf
+  bytes: 17117951616
+  SHA256: 17350b1355d32397cffe7d4b446fd9361dbb01aa26bbf41fc950aa595033794f
+  status at snapshot: downloading
+Qwen_Qwen3.6-35B-A3B-Q2_K.gguf
+  bytes: 13506778752
+  SHA256: 673142cca6255bbb19774c8d438220d9ecfc3c8b215bc619d5e801bc37a35405
+  status at snapshot: downloading
+Qwen_Qwen3.6-35B-A3B-Q8_0.gguf
+  bytes: 37812647552
+  SHA256: bc57de096ec30e45773aa86103f35a8a32cea01f2193a53a3c636d618e4434e9
+  status at snapshot: verified
+
+RUNTIME
+llama.cpp commit: 23b0202a189c44a54625aadcb37a946dd1d6278d
+Runtime version: version: 0.6.0-dev (build 11552, commit 23b0202a1)
+built with GNU 12.4.0 for Linux x86_64
+Local binary path: /home/cs4/Documents/Experiments 1/llama.cpp/build/bin/llama-server
+Local binary SHA256: 91e202530da33eed4206748ac51d472ce353a0b45ff12613e2419989f77e4469
+Build: Release; GGML_CUDA=ON; GGML_NATIVE=ON; GGML_OPENMP=ON; GGML_LLAMAFILE=ON; GGML_BLAS=OFF.
+CUDA architecture reported in successful startup: 890 (Ada / RTX 4060 Ti). The runtime loads libggml-cuda, libcudart.so.12, libcublas.so.12 and libcublasLt.so.12.
+Use the exact source revision plus compatible build tooling. For binary reproduction keep the shared libraries too: copying llama-server alone is insufficient. A new-machine build may have different binary hashes. GGML_NATIVE produces host-dependent CPU code.
+Build helper in this project: scripts/build_pinned_runtime.sh. Inspect it against the recorded build flags; do not assume the same source commit alone makes a different build identical.
+No speculative decoding is enabled; original GGUF next-token-prediction tensors are ignored by this execution path as recorded in startup logs.
+
+CURRENT COMMON NUMERICAL SETTINGS
+Context capacity: 131072 tokens (128K), INCLUDING template/input/history plus generated tokens.
+Combined output ceiling: 24576 tokens, INCLUDING emitted thinking and final answer.
+Thinking: enabled; maximum reasoning budget 16384 tokens. If fully used, roughly 8192 tokens remain for the final response, subject to template/termination-token overhead and actual backend accounting. These are ceilings; EOS may end generation earlier.
+Maximum theoretical input allowance with full output reserved: 106496 tokens, including chat-template overhead. Short exam questions do not test a populated 128K input.
+Temperature 1.0; top_p 0.95; top_k 20; min_p 0.0; presence_penalty 1.5.
+Three full-study trials: seed 73191, 73192, 73193. Each trial shuffles the original task list using random.Random(seed).shuffle; the same seed/task order is paired across quantizations. Seeds do not guarantee bit-identical outputs on different hardware/builds.
+HTTP/socket timeout supplied to urllib: 1800 seconds. Current runner has no independent hard whole-request wall-clock deadline; streaming reads can extend overall request duration.
+Parallel sequences 1; generation threads 16; batch/prompt threads 16. Batch tokens 2048; microbatch tokens 512.
+K cache f16; V cache f16. KV cache and recurrent state stay on CUDA in the recorded loads. Flash Attention auto, effective enabled in successful startup logs.
+Placement candidate: --gpu-layers all --n-cpu-moe 30 --fit off --override-tensor token_embd.weight=CUDA0. This keeps the first 30 layers' MoE expert tensors on CPU while eligible remaining tensors are on GPU. It does NOT mean 30 whole transformer layers run exclusively on CPU, and does NOT mean all weights are GPU-resident.
+The same layer indices/count must be used across every quantization in the controlled condition. Do not silently change placement, cache precision, context, reasoning or sampling per format. Validate memory on the new host before claiming fit.
+API binds 127.0.0.1:8081; one model at a time. Live progress UI is 127.0.0.1:8082 and has no effect on model reasoning.
+
+EXACT RECORDED Q8 SERVER COMMAND
+'/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/llama-server' --jinja --reasoning on --reasoning-budget 16384 -m /home/cs4/Documents/Codex/2026-10-10/https-chatgpt-com-share-6acaa861-df60/outputs/Qwen3.6-study/models/Qwen_Qwen3.6-35B-A3B-Q8_0.gguf --gpu-layers all --n-cpu-moe 30 --fit off --override-tensor token_embd.weight=CUDA0 -c 131072 -n 24576 -b 2048 -ub 512 -ctk f16 -ctv f16 --parallel 1 --threads 16 --threads-batch 16 --flash-attn auto --host 127.0.0.1 --port 8081 -lv 4
+On another machine replace the binary/model absolute paths and retain the numerical settings. Current start_server.py builds this command from config/experiment.json and verifies the model hash/runtime commit.
+
+REQUEST PROTOCOL
+One fresh request per question, containing exactly one user message with the public task.prompt. No custom system message, few-shot examples, history, private answers or hidden code tests. No tools or response_format/grammar restriction is sent. The model must produce the requested marker/JSON/code format itself.
+Jinja templating enabled; reasoning on at startup, reasoning_budget_tokens explicitly supplied per request. stream true and stream_options.include_usage true.
+cache_prompt=false per request. Actual saved usage reported cached prompt tokens 0. Separately, the SERVER RAM prompt cache remains enabled at its default 8192MiB limit; this is NOT the same setting as request prompt reuse. The launcher currently does not pass --cache-ram 0.
+Other server defaults are recorded in the saved /props snapshot. Observed defaults include repeat_penalty 1.0, repeat_last_n 64, frequency_penalty 0, typical_p 1.0, disabled DRY/XTC/mirostat/backend sampling. Explicit request fields above override server sampling defaults, including server default min_p=.05 and presence_penalty=0. Do not rely on unoverridden defaults when porting to a different runtime.
+Observed loading: mmap enabled, no explicit mlock, startup warmup enabled. Server slot/prompt-cache behavior remains at pinned-runtime defaults. No user-requested custom stop strings or constrained decoder.
+Example actual study request:
+{
+  "temperature": 1.0,
+  "top_p": 0.95,
+  "top_k": 20,
+  "min_p": 0.0,
+  "presence_penalty": 1.5,
+  "seed": 73191,
+  "max_tokens": 24576,
+  "reasoning_budget_tokens": 16384,
+  "stream": true,
+  "stream_options": {
+    "include_usage": true
+  },
+  "cache_prompt": false,
+  "messages": [
+    {
+      "role": "user",
+      "content": "<EXACT PUBLIC TASK PROMPT; NO ANSWER KEY>"
+    }
+  ]
+}
+
+EVALUATOR / DATASET / COLLECTION CONTROLS
+Current inherited exam: audited v2.1, 60 questions (20 reasoning, 20 data, 10 instruction, 10 coding), plus eight distinct calibration questions. hard_v1 200+ exam not yet integrated; its exact prompts/keys/cases/fingerprints must be supplied and audited before replication.
+Inference only receives public prompts. The deterministic scorer and private answer keys are used afterward. Preserve strict primary scores; solution extraction/review is separately labeled and must follow frozen rules. Wrong keys/markers, substantive mistakes, code policy, truncation and infrastructure failures remain distinguishable.
+Public questions: datasets/study_v2/public/tasks.json. Private keys/references/4076 coding cases: datasets/study_v2/private/answer_keys.json. Also retain dataset manifests and validation evidence.
+Runner: scripts/run_study_v2.py. Scorer: scripts/study_score_v2.py. Code evaluator: scripts/study_code_harness_v2.py. Validator: scripts/validate_study_v2.py. Include these exact files; a text settings document does not replace them.
+Frozen file checksums: environment/evaluation_standard.json. Current common config guard: environment/standard_lock.json. Require status frozen and matching configuration hash before a kept run. The current status is qualifying, so kept runs remain blocked.
+Pinned Docker image: python@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1
+Docker restrictions: --network none --read-only --cap-drop ALL --security-opt no-new-privileges --memory 256m --memory-swap 256m --cpus 1 --pids-limit 32 --user 65534:65534 --ulimit cpu=10:10 --tmpfs /tmp:rw,noexec,nosuid,size=16m. Task payload/source mounted read-only. Per-container wall timeout 20 seconds; forced cleanup afterward.
+Python AST policy and builtin allowlist are defined by the exact harness, including restrictions on imports, dynamic/dunder access and module-level actions. Do not substitute an arbitrary sandbox or expand permissions only for one quantization.
+Run scripts/docker_preflight.py and scripts/test_docker_wall_timeout.py on the destination host; source-host successful preflight is not destination validation.
+Each attempt stores exact public request, final answer, emitted reasoning, finish reason, usage, timing, and samples of whole-device GPU memory plus model process RSS/PSS/swap and host memory. Monitoring interval 1 second; setup prefill probes use .25-second GPU sampling. Whole-device GPU memory includes other GPU users.
+Generation timing excludes Docker grading. First-token timing is measured from HTTP request start to first received text/reasoning delta. Prompt/decode throughput uses server-reported timings when present. Total completion tokens include reasoning; do not invent separate reasoning-token counts from text length.
+No benchmark-time downloads or unrelated heavy work. Record thermal/power state, actual prompt lengths, missing measurements and infrastructure failures. Never replace failed attempts silently. Three repeated seeds are not three independent copies of a question.
+
+LOAD QUALIFICATION AND HISTORICAL CONDITIONS
+Q8 candidate at n_cpu_moe=30: CPU assigned model buffer 25590.40MiB (~24.991GiB), CUDA assigned model buffer 10714.11MiB; short whole-device GPU use 14253MiB, minimum prefill free 2123MiB, process swap zero in selected probe. Short median decode ~35.21 tokens/s is setup evidence, not a final exam throughput result.
+Q4 at same count: CPU assigned model buffer 14626.42MiB, CUDA assigned 6567.87MiB, minimum prefill GPU free 6407MiB, but process swap 111.87MiB. This failed the no-process-swap qualification. Common profile is therefore not yet frozen.
+Qualification threshold: >=1536MiB free VRAM during probes and zero process swap. The prefill probe used roughly 11142 input tokens at 128K allocation. It did not exercise a fully populated 128K context or maximum 24576 generated tokens.
+Excluded arithmetic/load probes deliberately use 128 thinking tokens and 512 total output tokens, rather than study budgets. Do not pool them with quality evaluation.
+Historical interrupted Q4 run used 20 CPU expert layers, 2048 thinking tokens, 12288 total output tokens, same 128K context; 58 responses saved, 51 strict passes and five additional demonstrated correct solutions under secondary review. It is exploratory and cannot be pooled with the new-budget/common-placement condition. No new full Q8 run has completed.
+
+FILES TO TRANSFER FOR A WORKING REPLICATION
+1. This text snapshot and current config/experiment.json; frozen standard_profile.json once it actually exists and passes validation.
+2. Exact public exam, separate private keys/oracles/hidden cases, calibration set, manifests, independent audit reports and task-family labels.
+3. scripts/ runner, launch, placement checks, scorer, harness, validators, analysis/export/comparison tools, and environment/evaluation_standard.json.
+4. Model manifests/checksums and either exact GGUF files or enough storage/network access to download the pinned files again.
+5. Pinned runtime source/build recipe or matching binary plus shared libraries; Python requirements; Docker image pin and destination preflight.
+6. Raw results/provenance/history if continuing the study rather than starting a fresh collection. Original-machine transient services and local absolute paths do not transfer automatically.
+Live UI/terminal viewing scripts are optional for scientific replication; the request protocol and evaluator are not.
+
+FULL CURRENT CONFIGURATION
+{
+  "model_revision": "bartowski/Qwen_Qwen3.6-35B-A3B-GGUF@5c2410d71524f4f72b023ce8daf7a80528226d5f",
+  "llama_cpp_commit": "23b0202a189c44a54625aadcb37a946dd1d6278d",
+  "quantizations": [
+    "Q8_0",
+    "Q6_K",
+    "Q5_K_M",
+    "Q4_K_M",
+    "Q3_K_M",
+    "Q2_K"
+  ],
+  "context_tokens": 131072,
+  "max_output_tokens": 24576,
+  "temperature": 1.0,
+  "seed": 73191,
+  "request_timeout_seconds": 1800,
+  "repetitions": 3,
+  "server_url": "http://127.0.0.1:8081",
+  "reasoning_mode": "on",
+  "top_p": 0.95,
+  "top_k": 20,
+  "min_p": 0.0,
+  "presence_penalty": 1.5,
+  "kv_cache_type_k": "f16",
+  "kv_cache_type_v": "f16",
+  "batch_tokens": 2048,
+  "ubatch_tokens": 512,
+  "parallel_sequences": 1,
+  "reasoning_budget_tokens": 16384,
+  "study_id": "qwen36_moe_128k_common_v2",
+  "model_name": "Qwen3.6-35B-A3B",
+  "model_filename_template": "Qwen_Qwen3.6-35B-A3B-{quant}.gguf",
+  "model_repository": "bartowski/Qwen_Qwen3.6-35B-A3B-GGUF",
+  "model_repository_revision": "5c2410d71524f4f72b023ce8daf7a80528226d5f",
+  "optional_quantizations": [],
+  "reference_quantization": "Q8_0",
+  "cpu_moe_layers": 30,
+  "cpu_threads": 16,
+  "cpu_threads_batch": 16,
+  "flash_attention": "auto",
+  "placement_status": "reference_based_common_policy",
+  "runtime_status": "pinned_runtime_qualified_at_128k",
+  "runtime_binary": "llama.cpp/build/bin/llama-server"
+}
+
+CURRENT STANDARD-LOCK STATUS
+{
+  "status": "qualifying",
+  "reference": "Q8_0",
+  "message": "Kept runs blocked until reference-based common settings are frozen."
+}
+
+FROZEN EXAM/EVALUATOR FILE HASHES
+{
+  "datasets/calibration_v2.json": "7a7d64e0f35488ec50f2eb384e9eb506462458d4efea27b0f52a546899110a31",
+  "datasets/study_v2/CHANGELOG.json": "709868c13f8dcb31d0a57388ece883f4f012de4f53effbd0e58516e34c8db40a",
+  "datasets/study_v2/manifest.json": "56cb2560f1a2449088dec1934524fdb6d9c754aa1a7384c8f2d7f0cfb345fb38",
+  "datasets/study_v2/private/answer_keys.json": "a6f829e2716c1f05a6b8d7bf4eedaea2b8b740cbbd66dc061f53c36c705972b5",
+  "datasets/study_v2/private/validation.json": "4c36677565f59899ad3b9f8271e73650c919d895a58ddd6536e1014e58484e92",
+  "datasets/study_v2/public/tasks.json": "6465b3c7d417756a5674ca5cbf3694133e575ac481e8cefd5d76dd167f2bb11c",
+  "environment/docker_image_digest.txt": "0a85901569a174f3fd01b3125d6d43de263e42ccc9e7598af8fa77f2b375dda8",
+  "scripts/run_study_v2.py": "3a541f078d1d63b1b52299e06955560597ed1f54dfdfd40303a9cdb5af7e193d",
+  "scripts/study_code_harness_v2.py": "c4425c2ef1c545f2404ec180c74041837c5e302db2f1b5921279db4babe8423f",
+  "scripts/study_profile.py": "64727d448c228270a3946269476af125846c64ac46d0f4f383389b9230f06521",
+  "scripts/study_score_v2.py": "ccf4b12043f204cb4148eb0a105aa07ac53487f7ee20aae2db6e4ea50494a8c4",
+  "scripts/validate_study_v2.py": "5581efcf83ee56a674629b14dcc8c046135b5b411c1a9aca2159691d07c04eb1"
+}
+
+EXPLICIT SERVER GENERATION DEFAULTS FROM SUCCESSFUL Q8 /props
+{
+  "params": {
+    "seed": 4294967295,
+    "temperature": 1.0,
+    "dynatemp_range": 0.0,
+    "dynatemp_exponent": 1.0,
+    "top_k": 20,
+    "top_p": 0.949999988079071,
+    "min_p": 0.05000000074505806,
+    "top_n_sigma": -1.0,
+    "xtc_probability": 0.0,
+    "xtc_threshold": 0.10000000149011612,
+    "typical_p": 1.0,
+    "repeat_last_n": 64,
+    "repeat_penalty": 1.0,
+    "presence_penalty": 0.0,
+    "frequency_penalty": 0.0,
+    "dry_multiplier": 0.0,
+    "dry_base": 1.75,
+    "dry_allowed_length": 2,
+    "dry_penalty_last_n": 64,
+    "mirostat": 0,
+    "mirostat_tau": 5.0,
+    "mirostat_eta": 0.10000000149011612,
+    "adaptive_target": -1.0,
+    "adaptive_decay": 0.8999999761581421,
+    "max_tokens": -1,
+    "n_predict": -1,
+    "n_keep": 0,
+    "n_discard": 0,
+    "ignore_eos": false,
+    "stream": false,
+    "n_probs": 0,
+    "min_keep": 0,
+    "chat_format": "Content-only",
+    "reasoning_format": "none",
+    "reasoning_in_content": false,
+    "generation_prompt": "",
+    "samplers": [
+      "penalties",
+      "dry",
+      "top_n_sigma",
+      "top_k",
+      "typ_p",
+      "top_p",
+      "min_p",
+      "xtc",
+      "temperature"
+    ],
+    "speculative.types": "none",
+    "timings_per_token": false,
+    "post_sampling_probs": false,
+    "backend_sampling": false,
+    "lora": []
+  },
+  "n_ctx": 131072
+}
+
+LOCAL RUNTIME SHARED-LIBRARY HASHES
+{
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libggml-base.so": "037dd7abda6b3897fe649f0176f20b6889d586e36e03018417aca1bff67a1449",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libggml-base.so.0": "037dd7abda6b3897fe649f0176f20b6889d586e36e03018417aca1bff67a1449",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libggml-base.so.0.26.0": "037dd7abda6b3897fe649f0176f20b6889d586e36e03018417aca1bff67a1449",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libggml-cpu.so": "f812e4da0c0574e68b0736cbf35bc211e694eb4c9853df17bef6ac119928ed23",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libggml-cpu.so.0": "f812e4da0c0574e68b0736cbf35bc211e694eb4c9853df17bef6ac119928ed23",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libggml-cpu.so.0.26.0": "f812e4da0c0574e68b0736cbf35bc211e694eb4c9853df17bef6ac119928ed23",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libggml-cuda.so": "e6f826b5d7cb8267d2132221e1f0d069bdbedd141b0ffa84c03b0906154f55b6",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libggml-cuda.so.0": "e6f826b5d7cb8267d2132221e1f0d069bdbedd141b0ffa84c03b0906154f55b6",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libggml-cuda.so.0.26.0": "e6f826b5d7cb8267d2132221e1f0d069bdbedd141b0ffa84c03b0906154f55b6",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libggml.so": "20d6b8a71fd6c3c1591ba11d45f63dbaa3d94e51ef9e1c801a4c8134972040ca",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libggml.so.0": "20d6b8a71fd6c3c1591ba11d45f63dbaa3d94e51ef9e1c801a4c8134972040ca",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libggml.so.0.26.0": "20d6b8a71fd6c3c1591ba11d45f63dbaa3d94e51ef9e1c801a4c8134972040ca",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libllama-batched-bench-impl.so": "b60bb6cd237dd4647db7fd5141feca51d5ca4120950665f67e85fe680d594b86",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libllama-bench-impl.so": "190a6485fa573575b989981fd61825c43862d6ea3d1aa33647507ee6165488ca",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libllama-cli-impl.so": "a414a0098e051a839eea13f9df47fbe2021460169546d77b4dea8a732ab51515",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libllama-common.so": "ff151731f4e5eb55d9d86fbeeb3b104253876902c02987be115eeade483afb4a",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libllama-common.so.0": "ff151731f4e5eb55d9d86fbeeb3b104253876902c02987be115eeade483afb4a",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libllama-common.so.0.6.0": "ff151731f4e5eb55d9d86fbeeb3b104253876902c02987be115eeade483afb4a",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libllama-completion-impl.so": "56b68bcd40e9841ce70d758e3cbd55a715e62a6673aeb5a2a33ba0398e0dba8d",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libllama-fit-params-impl.so": "cbf36c66fa9e3f44fc5967f007e1be779027a5eedeb3d335cc61d562e6464ae5",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libllama-perplexity-impl.so": "b9bfaae0df2ef3e429b1754948c7a61dafdb6ccda90174d4c318f88ea67bbd2a",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libllama-quantize-impl.so": "55a4148e70021cdf1e012e086312c30597c1647d034bc97ba60e2406307a0d76",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libllama-server-impl.so": "692ef992a480c8412e28af033c5788fa6b517b458aca468e46bea1b7ffd127c5",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libllama.so": "bc753462cbfe1589375bbe78b3a4cfcaec6a071ae6cccaa593c757d27f260281",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libllama.so.0": "bc753462cbfe1589375bbe78b3a4cfcaec6a071ae6cccaa593c757d27f260281",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libllama.so.0.6.0": "bc753462cbfe1589375bbe78b3a4cfcaec6a071ae6cccaa593c757d27f260281",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libmtmd.so": "8e80d684bc52e08df438126d1350e2f6bfad1d464d80f9a229ada37ebf2bea8e",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libmtmd.so.0": "8e80d684bc52e08df438126d1350e2f6bfad1d464d80f9a229ada37ebf2bea8e",
+  "/home/cs4/Documents/Experiments 1/llama.cpp/build/bin/libmtmd.so.0.6.0": "8e80d684bc52e08df438126d1350e2f6bfad1d464d80f9a229ada37ebf2bea8e"
+}
