@@ -1,1 +1,33 @@
 https://chatgpt.com/share/6add1384-a300-83e8-9212-3be4ea14075c
+
+cs4@cs4:~$ fastfetch
+                             ....              cs4@cs4
+              .',:clooo:  .:looooo:.           -------
+           .;looooooooc  .oooooooooo'          OS: Ubuntu 24.04.4 LTS (Noble Numbat) x86_64
+        .;looooool:,''.  :ooooooooooc          Kernel: Linux 7.0.0-38-generic
+       ;looool;.         'oooooooooo,          Uptime: 2 days, 19 hours, 53 mins
+      ;clool'             .cooooooc.  ,,       Packages: 1900 (dpkg), 13 (snap)
+         ...                ......  .:oo,      Shell: bash 5.2.21
+  .;clol:,.                        .loooo'     Display (DELL U2419H): 1920x1080 in 24", 60 Hz [External]
+ :ooooooooo,                        'ooool     Desktop Environment: GNOME 46.0
+'ooooooooooo.                        loooo.    Window Manager: Mutter (X11)
+'ooooooooool                         coooo.    WM Theme: Yaru
+ ,loooooooc.                        .loooo.    Theme: Yaru [GTK2/3/4]
+   .,;;;'.                          ;ooooc     Icons: Yaru [GTK2/3/4]
+       ...                         ,ooool.     Font: Ubuntu Sans (11pt) [GTK2/3/4]
+    .cooooc.              ..',,'.  .cooo.      Cursor: Yaru (24px)
+      ;ooooo:.           ;oooooooc.  :l.       Terminal: GNOME Terminal 3.52.0
+       .coooooc,..      coooooooooo.           Terminal Font: Ubuntu Sans Mono (13pt)
+         .:ooooooolc:. .ooooooooooo'           CPU: AMD Ryzen 9 7950X (32) @ 5.88 GHz
+           .':loooooo;  ,oooooooooc            GPU 1: AMD Radeon 610M [Integrated]
+               ..';::c'  .;loooo:'             GPU 2: NVIDIA GeForce RTX 4060 Ti 16GB [Discrete]
+                                               Memory: 6.70 GiB / 61.93 GiB (11%)
+                                               Swap: 0 B / 8.00 GiB (0%)
+                                               Disk (/): 309.39 GiB / 1.79 TiB (17%) - ext4
+                                               Local IP (wlp9s0): 10.16.64.67/21
+                                               Locale: en_US.UTF-8
+                                               
+                                                                       
+                                                                       
+cs4@cs4:~$ 
+
