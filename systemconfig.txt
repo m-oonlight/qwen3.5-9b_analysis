@@ -1,3 +1,69 @@
+6:37pm, Freeze q8 settings:
+**The shared profile would use the same settings for Q8, Q6, Q5, Q4, Q3 and Q2. Only the GGUF file and its associated quantization/size/hash would change.**
+
+| Setting | Shared value |
+|---|---|
+| Model | **Qwen3.6-35B-A3B**, same checkpoint |
+| Reference | **Q8_0** |
+| CPU placement | **First 30 layers’ MoE experts on CPU**, identical layer indices |
+| Other eligible tensors | GPU; input embeddings on CUDA |
+| Automatic memory fitting | **Off** |
+| Context capacity | **131,072 tokens** |
+| Thinking | **Enabled** |
+| Thinking ceiling | **16,384 tokens** |
+| Total output ceiling | **24,576 tokens**, including thinking |
+| Input allowance with full output reserved | **106,496 tokens**, including template overhead |
+| Concurrent sequences | **1** |
+| KV-cache precision | **FP16 K and V** |
+| Batch / microbatch | **2,048 / 512** |
+| CPU generation / prompt threads | **16 / 16** |
+| Flash Attention | Auto; effective mode recorded and checked |
+| Speculative decoding | Disabled |
+| Runtime | llama.cpp **b11552**, commit `23b0202a189c44a54625aadcb37a946dd1d6278d` |
+
+Generation controls would be identical:
+
+| Setting | Value |
+|---|---|
+| Temperature | **1.0** |
+| Top-p | **0.95** |
+| Top-k | **20** |
+| Min-p | **0.0** |
+| Presence penalty | **1.5** |
+| Repeat penalty | **1.0** |
+| Frequency penalty | **0.0** |
+| Trials per question | **3** |
+| Paired seeds | **73191, 73192, 73193** |
+| HTTP/socket timeout | **1,800 seconds** |
+
+The experiment would also freeze:
+
+- The exact exam, calibration set, system prompt, chat template and tokenizer.
+- One fresh request per question, with no conversation history or answer keys.
+- Identical shuffled question order for each paired seed.
+- Request prompt reuse disabled: `cache_prompt=false`.
+- The exact scorer, hidden tests, extraction rules and Docker image/resource limits.
+- No concurrent downloads or unrelated heavy workloads during timed runs.
+
+One additional cache detail needs recording explicitly: the server currently retains its **8,192 MiB RAM prompt-cache default**, despite request-level prompt reuse being disabled. Its final policy should be settled during memory qualification.
+
+**Lower quantizations would still use 30 CPU expert layers even if more of their weights could fit on the GPU.** That keeps placement constant.
+
+This is the **candidate profile**, not yet a validated freeze. Before freezing, we need to resolve Q4’s swapped-memory observation, qualify the selected formats under the shared settings, and check the budgets on the separate Q8 calibration set. The earlier Q2/Q3/Q4 results used different budgets and placement, so they remain a separate exploratory condition.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 QWEN3.6-35B-A3B — CURRENT REPLICATION SNAPSHOT
 2026-10-24T16:24:22-07:00
 
