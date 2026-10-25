@@ -12,3 +12,8 @@ what the models are running like
 next time the idea is just to come here with the test, 
 run the test and benchmarks, 
 and then be able to collect the data with the questions from the goals stated in the paper.
+
+
+
+
+sudo: password142857
