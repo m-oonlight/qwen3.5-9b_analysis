@@ -1,0 +1,14 @@
+I think probably what's left is definitely making the fucking test, use claude js cus the gpt codex chats cant be exported. 
+Should be "https://claude.ai/share/abd6841b-d24f-4b18-a3af-648ad6aecbb6"
+just ask it to like given the test make the revisions or maybe use another claude instance or something
+audit
+read the paper info, system configuration, something bout 30 cpu layers or sum
+q2-q8
+
+understand whats happening??
+the exam, docker, whatever
+what the models are running like
+
+next time the idea is just to come here with the test, 
+run the test and benchmarks, 
+and then be able to collect the data with the questions from the goals stated in the paper.
