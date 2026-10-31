@@ -1,0 +1,1792 @@
+{
+ "name": "hard_v3 answer key for the 200 math and logic questions (PRIVATE: never show the model)",
+ "how_to_grade": [
+  "Each answer below is the exact JSON object the model must give after \"FINAL_JSON:\".",
+  "Correct only if the model's final JSON object equals the key exactly: same keys, same values, same list order. JSON key order does not matter.",
+  "Fractions are written [numerator, denominator] in lowest terms with a positive denominator; an unreduced or decimal fraction is wrong.",
+  "null and [] are different answers. Integers must be JSON integers (5, not 5.0 or \"5\").",
+  "Explanations do not matter; only the final JSON object is graded. No FINAL_JSON object, extra text after it, or an output that was cut off counts as wrong.",
+  "The 50 coding questions are not in this file: they are graded by running the model's code on hidden_tests.json."
+ ],
+ "answers": {
+  "HV3-MODULAR_ROOTS-01": {
+   "answer": [
+    39,
+    49
+   ]
+  },
+  "HV3-MODULAR_ROOTS-02": {
+   "answer": 5
+  },
+  "HV3-MODULAR_ROOTS-03": {
+   "answer": [
+    [
+     0,
+     3
+    ],
+    [
+     1,
+     2
+    ]
+   ]
+  },
+  "HV3-MODULAR_ROOTS-04": {
+   "answer": {
+    "first": 14,
+    "last": 14
+   }
+  },
+  "HV3-MODULAR_ROOTS-05": {
+   "answer": [
+    3,
+    1
+   ]
+  },
+  "HV3-DIVISOR_FILTER-01": {
+   "answer": 1688
+  },
+  "HV3-DIVISOR_FILTER-02": {
+   "answer": [
+    [
+     3,
+     288
+    ],
+    [
+     4,
+     0
+    ],
+    [
+     5,
+     0
+    ]
+   ]
+  },
+  "HV3-DIVISOR_FILTER-03": {
+   "answer": [
+    2
+   ]
+  },
+  "HV3-DIVISOR_FILTER-04": {
+   "answer": 992
+  },
+  "HV3-DIVISOR_FILTER-05": {
+   "answer": {
+    "parameter": 3,
+    "value": 78
+   }
+  },
+  "HV3-DIGIT_AUTOMATON-01": {
+   "answer": 52
+  },
+  "HV3-DIGIT_AUTOMATON-02": {
+   "answer": [
+    [
+     3,
+     0
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     5,
+     1
+    ]
+   ]
+  },
+  "HV3-DIGIT_AUTOMATON-03": {
+   "answer": [
+    0
+   ]
+  },
+  "HV3-DIGIT_AUTOMATON-04": {
+   "answer": 6
+  },
+  "HV3-DIGIT_AUTOMATON-05": {
+   "answer": {
+    "parameter": 0,
+    "value": 10
+   }
+  },
+  "HV3-CRT_WINDOW-01": {
+   "answer": [
+    -187,
+    -127,
+    -103,
+    -43,
+    -19,
+    41,
+    125,
+    149,
+    209,
+    233,
+    293,
+    317
+   ]
+  },
+  "HV3-CRT_WINDOW-02": {
+   "answer": 4
+  },
+  "HV3-CRT_WINDOW-03": {
+   "answer": [
+    [
+     0,
+     2
+    ]
+   ]
+  },
+  "HV3-CRT_WINDOW-04": {
+   "answer": {
+    "first": -26,
+    "last": -26
+   }
+  },
+  "HV3-CRT_WINDOW-05": {
+   "answer": [
+    4,
+    5
+   ]
+  },
+  "HV3-FACTORIAL_VALUATION-01": {
+   "answer": 11
+  },
+  "HV3-FACTORIAL_VALUATION-02": {
+   "answer": [
+    [
+     42,
+     1
+    ],
+    [
+     43,
+     1
+    ],
+    [
+     44,
+     2
+    ]
+   ]
+  },
+  "HV3-FACTORIAL_VALUATION-03": {
+   "answer": [
+    81,
+    82
+   ]
+  },
+  "HV3-FACTORIAL_VALUATION-04": {
+   "answer": 75
+  },
+  "HV3-FACTORIAL_VALUATION-05": {
+   "answer": {
+    "parameter": 25,
+    "value": 3
+   }
+  },
+  "HV3-INTEGER_SYSTEM-01": {
+   "answer": [
+    [
+     -3,
+     -3,
+     1
+    ]
+   ]
+  },
+  "HV3-INTEGER_SYSTEM-02": {
+   "answer": 1
+  },
+  "HV3-INTEGER_SYSTEM-03": {
+   "answer": [
+    [
+     5,
+     2
+    ]
+   ]
+  },
+  "HV3-INTEGER_SYSTEM-04": {
+   "answer": {
+    "first": [
+     -8,
+     1,
+     -7
+    ],
+    "last": [
+     -8,
+     1,
+     -7
+    ]
+   }
+  },
+  "HV3-INTEGER_SYSTEM-05": {
+   "answer": [
+    5,
+    1
+   ]
+  },
+  "HV3-RATIONAL_ROOTS-01": {
+   "answer": [
+    -7,
+    4
+   ]
+  },
+  "HV3-RATIONAL_ROOTS-02": {
+   "answer": 2
+  },
+  "HV3-RATIONAL_ROOTS-03": {
+   "answer": [
+    [
+     1,
+     2
+    ]
+   ]
+  },
+  "HV3-RATIONAL_ROOTS-04": {
+   "answer": {
+    "first": -6,
+    "last": 5
+   }
+  },
+  "HV3-RATIONAL_ROOTS-05": {
+   "answer": [
+    1,
+    1
+   ]
+  },
+  "HV3-FINITE_LINEAR-01": {
+   "answer": []
+  },
+  "HV3-FINITE_LINEAR-02": {
+   "answer": 11
+  },
+  "HV3-FINITE_LINEAR-03": {
+   "answer": [
+    [
+     10,
+     2
+    ],
+    [
+     17,
+     3
+    ],
+    [
+     24,
+     1
+    ],
+    [
+     31,
+     1
+    ]
+   ]
+  },
+  "HV3-FINITE_LINEAR-04": {
+   "answer": {
+    "first": [
+     0,
+     2,
+     2
+    ],
+    "last": [
+     0,
+     2,
+     2
+    ]
+   }
+  },
+  "HV3-FINITE_LINEAR-05": {
+   "answer": [
+    10,
+    1
+   ]
+  },
+  "HV3-INTERPOLATION-01": {
+   "answer": [
+    542,
+    65
+   ]
+  },
+  "HV3-INTERPOLATION-02": {
+   "answer": [
+    -50522,
+    297
+   ]
+  },
+  "HV3-INTERPOLATION-03": {
+   "answer": [
+    -16,
+    7
+   ]
+  },
+  "HV3-INTERPOLATION-04": {
+   "answer": [
+    -83,
+    396
+   ]
+  },
+  "HV3-INTERPOLATION-05": {
+   "answer": [
+    -63523,
+    297
+   ]
+  },
+  "HV3-FLOOR_EQUATION-01": {
+   "answer": [
+    -29,
+    -27
+   ]
+  },
+  "HV3-FLOOR_EQUATION-02": {
+   "answer": 10
+  },
+  "HV3-FLOOR_EQUATION-03": {
+   "answer": [
+    [
+     0,
+     3
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     3,
+     2
+    ]
+   ]
+  },
+  "HV3-FLOOR_EQUATION-04": {
+   "answer": {
+    "first": -71,
+    "last": -69
+   }
+  },
+  "HV3-FLOOR_EQUATION-05": {
+   "answer": [
+    38,
+    23
+   ]
+  },
+  "HV3-MULTISET_WORDS-01": {
+   "answer": 3
+  },
+  "HV3-MULTISET_WORDS-02": {
+   "answer": [
+    [
+     0,
+     4
+    ],
+    [
+     1,
+     4
+    ],
+    [
+     2,
+     2
+    ]
+   ]
+  },
+  "HV3-MULTISET_WORDS-03": {
+   "answer": [
+    1,
+    3
+   ]
+  },
+  "HV3-MULTISET_WORDS-04": {
+   "answer": 31
+  },
+  "HV3-MULTISET_WORDS-05": {
+   "answer": {
+    "parameter": 0,
+    "value": 29
+   }
+  },
+  "HV3-INDEPENDENT_SUBSET-01": {
+   "answer": 1
+  },
+  "HV3-INDEPENDENT_SUBSET-02": {
+   "answer": [
+    [
+     13,
+     17
+    ],
+    [
+     14,
+     12
+    ],
+    [
+     15,
+     11
+    ]
+   ]
+  },
+  "HV3-INDEPENDENT_SUBSET-03": {
+   "answer": [
+    9
+   ]
+  },
+  "HV3-INDEPENDENT_SUBSET-04": {
+   "answer": 18
+  },
+  "HV3-INDEPENDENT_SUBSET-05": {
+   "answer": {
+    "parameter": -2,
+    "value": 2
+   }
+  },
+  "HV3-BOUNDED_COMPOSITION-01": {
+   "answer": 11
+  },
+  "HV3-BOUNDED_COMPOSITION-02": {
+   "answer": [
+    [
+     3,
+     2
+    ],
+    [
+     4,
+     0
+    ],
+    [
+     5,
+     0
+    ]
+   ]
+  },
+  "HV3-BOUNDED_COMPOSITION-03": {
+   "answer": [
+    4
+   ]
+  },
+  "HV3-BOUNDED_COMPOSITION-04": {
+   "answer": 20
+  },
+  "HV3-BOUNDED_COMPOSITION-05": {
+   "answer": {
+    "parameter": 8,
+    "value": 1
+   }
+  },
+  "HV3-RESTRICTED_PERMUTATION-01": {
+   "answer": 455
+  },
+  "HV3-RESTRICTED_PERMUTATION-02": {
+   "answer": [
+    [
+     1,
+     25
+    ],
+    [
+     2,
+     58
+    ],
+    [
+     3,
+     36
+    ]
+   ]
+  },
+  "HV3-RESTRICTED_PERMUTATION-03": {
+   "answer": [
+    3
+   ]
+  },
+  "HV3-RESTRICTED_PERMUTATION-04": {
+   "answer": 200
+  },
+  "HV3-RESTRICTED_PERMUTATION-05": {
+   "answer": {
+    "parameter": 3,
+    "value": 190
+   }
+  },
+  "HV3-GRID_PATHS-01": {
+   "answer": 8
+  },
+  "HV3-GRID_PATHS-02": {
+   "answer": [
+    [
+     3,
+     4
+    ],
+    [
+     4,
+     6
+    ],
+    [
+     5,
+     0
+    ]
+   ]
+  },
+  "HV3-GRID_PATHS-03": {
+   "answer": [
+    6
+   ]
+  },
+  "HV3-GRID_PATHS-04": {
+   "answer": 2
+  },
+  "HV3-GRID_PATHS-05": {
+   "answer": {
+    "parameter": 3,
+    "value": 6
+   }
+  },
+  "HV3-URN_CONDITIONAL-01": {
+   "answer": [
+    8,
+    69
+   ]
+  },
+  "HV3-URN_CONDITIONAL-02": {
+   "answer": [
+    31535,
+    103968
+   ]
+  },
+  "HV3-URN_CONDITIONAL-03": {
+   "answer": [
+    561925,
+    1149984
+   ]
+  },
+  "HV3-URN_CONDITIONAL-04": {
+   "answer": [
+    11,
+    17
+   ]
+  },
+  "HV3-URN_CONDITIONAL-05": {
+   "answer": [
+    23257,
+    8649
+   ]
+  },
+  "HV3-WALK_PROBABILITY-01": {
+   "answer": [
+    11,
+    64
+   ]
+  },
+  "HV3-WALK_PROBABILITY-02": {
+   "answer": [
+    1495240,
+    43046721
+   ]
+  },
+  "HV3-WALK_PROBABILITY-03": {
+   "answer": [
+    23,
+    2048
+   ]
+  },
+  "HV3-WALK_PROBABILITY-04": {
+   "answer": [
+    243,
+    470
+   ]
+  },
+  "HV3-WALK_PROBABILITY-05": {
+   "answer": [
+    633,
+    256
+   ]
+  },
+  "HV3-PERMUTATION_PROBABILITY-01": {
+   "answer": [
+    43,
+    432
+   ]
+  },
+  "HV3-PERMUTATION_PROBABILITY-02": {
+   "answer": [
+    25271,
+    259200
+   ]
+  },
+  "HV3-PERMUTATION_PROBABILITY-03": {
+   "answer": [
+    59,
+    32000
+   ]
+  },
+  "HV3-PERMUTATION_PROBABILITY-04": {
+   "answer": [
+    48,
+    95
+   ]
+  },
+  "HV3-PERMUTATION_PROBABILITY-05": {
+   "answer": [
+    27949,
+    10000
+   ]
+  },
+  "HV3-SUBSET_PROBABILITY-01": {
+   "answer": [
+    14,
+    225
+   ]
+  },
+  "HV3-SUBSET_PROBABILITY-02": {
+   "answer": [
+    703,
+    1568
+   ]
+  },
+  "HV3-SUBSET_PROBABILITY-03": {
+   "answer": [
+    162,
+    15625
+   ]
+  },
+  "HV3-SUBSET_PROBABILITY-04": {
+   "answer": [
+    1225,
+    2448
+   ]
+  },
+  "HV3-SUBSET_PROBABILITY-05": {
+   "answer": [
+    7249593,
+    2458624
+   ]
+  },
+  "HV3-NETWORK_RELIABILITY-01": {
+   "answer": [
+    839,
+    1200
+   ]
+  },
+  "HV3-NETWORK_RELIABILITY-02": {
+   "answer": [
+    77,
+    162
+   ]
+  },
+  "HV3-NETWORK_RELIABILITY-03": {
+   "answer": [
+    12427,
+    32000
+   ]
+  },
+  "HV3-NETWORK_RELIABILITY-04": {
+   "answer": [
+    600,
+    719
+   ]
+  },
+  "HV3-NETWORK_RELIABILITY-05": {
+   "answer": [
+    902295849,
+    419430400
+   ]
+  },
+  "HV3-VERTEX_COVER-01": {
+   "answer": {
+    "cost": 5,
+    "vertices": [
+     0,
+     1,
+     3
+    ]
+   }
+  },
+  "HV3-VERTEX_COVER-02": {
+   "answer": 1
+  },
+  "HV3-VERTEX_COVER-03": {
+   "answer": 1
+  },
+  "HV3-VERTEX_COVER-04": {
+   "answer": 4
+  },
+  "HV3-VERTEX_COVER-05": {
+   "answer": []
+  },
+  "HV3-SPANNING_TREE-01": {
+   "answer": {
+    "cost": 8,
+    "count": 7
+   }
+  },
+  "HV3-SPANNING_TREE-02": {
+   "answer": 4
+  },
+  "HV3-SPANNING_TREE-03": {
+   "answer": null
+  },
+  "HV3-SPANNING_TREE-04": {
+   "answer": 2
+  },
+  "HV3-SPANNING_TREE-05": {
+   "answer": [
+    0,
+    1,
+    3
+   ]
+  },
+  "HV3-RESOURCE_PATH-01": {
+   "answer": {
+    "cost": null,
+    "path": []
+   }
+  },
+  "HV3-RESOURCE_PATH-02": {
+   "answer": 1
+  },
+  "HV3-RESOURCE_PATH-03": {
+   "answer": 3
+  },
+  "HV3-RESOURCE_PATH-04": {
+   "answer": 2
+  },
+  "HV3-RESOURCE_PATH-05": {
+   "answer": [
+    0,
+    6
+   ]
+  },
+  "HV3-ASSIGNMENT-01": {
+   "answer": {
+    "cost": 1,
+    "assignment": [
+     0,
+     2,
+     3,
+     4,
+     5,
+     1
+    ]
+   }
+  },
+  "HV3-ASSIGNMENT-02": {
+   "answer": 0
+  },
+  "HV3-ASSIGNMENT-03": {
+   "answer": 1
+  },
+  "HV3-ASSIGNMENT-04": {
+   "answer": null
+  },
+  "HV3-ASSIGNMENT-05": {
+   "answer": [
+    8,
+    27
+   ]
+  },
+  "HV3-INTERVAL_SCHEDULE-01": {
+   "answer": {
+    "value": 12,
+    "jobs": [
+     0,
+     1,
+     3,
+     4,
+     8
+    ]
+   }
+  },
+  "HV3-INTERVAL_SCHEDULE-02": {
+   "answer": 3
+  },
+  "HV3-INTERVAL_SCHEDULE-03": {
+   "answer": 2
+  },
+  "HV3-INTERVAL_SCHEDULE-04": {
+   "answer": 10
+  },
+  "HV3-INTERVAL_SCHEDULE-05": {
+   "answer": [
+    2
+   ]
+  },
+  "HV3-COUPLED_RECURRENCE-01": {
+   "answer": [
+    9,
+    8
+   ]
+  },
+  "HV3-COUPLED_RECURRENCE-02": {
+   "answer": 20
+  },
+  "HV3-COUPLED_RECURRENCE-03": {
+   "answer": null
+  },
+  "HV3-COUPLED_RECURRENCE-04": {
+   "answer": [
+    71
+   ]
+  },
+  "HV3-COUPLED_RECURRENCE-05": {
+   "answer": 6
+  },
+  "HV3-SUBSTITUTION-01": {
+   "answer": 16
+  },
+  "HV3-SUBSTITUTION-02": {
+   "answer": [
+    [
+     8,
+     765
+    ],
+    [
+     9,
+     1533
+    ],
+    [
+     10,
+     3069
+    ]
+   ]
+  },
+  "HV3-SUBSTITUTION-03": {
+   "answer": []
+  },
+  "HV3-SUBSTITUTION-04": {
+   "answer": 2406
+  },
+  "HV3-SUBSTITUTION-05": {
+   "answer": {
+    "parameter": 4,
+    "value": 26
+   }
+  },
+  "HV3-FUNCTIONAL_GRAPH-01": {
+   "answer": {
+    "preperiod": 0,
+    "period": 32,
+    "value": 6
+   }
+  },
+  "HV3-FUNCTIONAL_GRAPH-02": {
+   "answer": [
+    30,
+    54,
+    46,
+    13,
+    14
+   ]
+  },
+  "HV3-FUNCTIONAL_GRAPH-03": {
+   "answer": 30689590
+  },
+  "HV3-FUNCTIONAL_GRAPH-04": {
+   "answer": null
+  },
+  "HV3-FUNCTIONAL_GRAPH-05": {
+   "answer": 8
+  },
+  "HV3-SUBTRACTION_GAME-01": {
+   "answer": [
+    9,
+    14,
+    19,
+    24
+   ]
+  },
+  "HV3-SUBTRACTION_GAME-02": {
+   "answer": 8
+  },
+  "HV3-SUBTRACTION_GAME-03": {
+   "answer": [
+    [
+     0,
+     2
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     3,
+     2
+    ]
+   ]
+  },
+  "HV3-SUBTRACTION_GAME-04": {
+   "answer": {
+    "first": 17,
+    "last": 57
+   }
+  },
+  "HV3-SUBTRACTION_GAME-05": {
+   "answer": [
+    3,
+    2
+   ]
+  },
+  "HV3-PERIODIC_MATRIX-01": {
+   "answer": [
+    10,
+    15
+   ]
+  },
+  "HV3-PERIODIC_MATRIX-02": {
+   "answer": 8
+  },
+  "HV3-PERIODIC_MATRIX-03": {
+   "answer": 3
+  },
+  "HV3-PERIODIC_MATRIX-04": {
+   "answer": [
+    3
+   ]
+  },
+  "HV3-PERIODIC_MATRIX-05": {
+   "answer": 23
+  },
+  "HV3-BOOLEAN_MODELS-01": {
+   "answer": [
+    [
+     0,
+     0,
+     1,
+     1,
+     1
+    ],
+    [
+     0,
+     1,
+     1,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    [
+     1,
+     0,
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     0,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     1,
+     0,
+     0
+    ]
+   ]
+  },
+  "HV3-BOOLEAN_MODELS-02": {
+   "answer": 9
+  },
+  "HV3-BOOLEAN_MODELS-03": {
+   "answer": []
+  },
+  "HV3-BOOLEAN_MODELS-04": {
+   "answer": {
+    "first": [
+     0,
+     0,
+     1,
+     1,
+     1
+    ],
+    "last": [
+     1,
+     1,
+     0,
+     1,
+     0
+    ]
+   }
+  },
+  "HV3-BOOLEAN_MODELS-05": {
+   "answer": [
+    203,
+    16
+   ]
+  },
+  "HV3-PRECEDENCE_ORDERS-01": {
+   "answer": [
+    [
+     4,
+     1,
+     5,
+     0,
+     3,
+     2
+    ],
+    [
+     4,
+     5,
+     0,
+     3,
+     2,
+     1
+    ],
+    [
+     4,
+     5,
+     1,
+     0,
+     3,
+     2
+    ],
+    [
+     5,
+     0,
+     4,
+     3,
+     2,
+     1
+    ],
+    [
+     5,
+     4,
+     0,
+     3,
+     2,
+     1
+    ],
+    [
+     5,
+     4,
+     1,
+     0,
+     3,
+     2
+    ]
+   ]
+  },
+  "HV3-PRECEDENCE_ORDERS-02": {
+   "answer": 2
+  },
+  "HV3-PRECEDENCE_ORDERS-03": {
+   "answer": [
+    [
+     66,
+     1
+    ],
+    [
+     67,
+     1
+    ],
+    [
+     68,
+     2
+    ],
+    [
+     70,
+     2
+    ],
+    [
+     71,
+     1
+    ],
+    [
+     72,
+     2
+    ],
+    [
+     73,
+     1
+    ],
+    [
+     74,
+     2
+    ],
+    [
+     75,
+     2
+    ],
+    [
+     76,
+     1
+    ],
+    [
+     77,
+     1
+    ],
+    [
+     79,
+     1
+    ],
+    [
+     80,
+     2
+    ],
+    [
+     81,
+     1
+    ]
+   ]
+  },
+  "HV3-PRECEDENCE_ORDERS-04": {
+   "answer": {
+    "first": null,
+    "last": null
+   }
+  },
+  "HV3-PRECEDENCE_ORDERS-05": {
+   "answer": [
+    31,
+    1
+   ]
+  },
+  "HV3-RELATIONAL_QUERY-01": {
+   "answer": [
+    [
+     0,
+     18
+    ],
+    [
+     2,
+     14
+    ],
+    [
+     4,
+     17
+    ]
+   ]
+  },
+  "HV3-RELATIONAL_QUERY-02": {
+   "answer": 0
+  },
+  "HV3-RELATIONAL_QUERY-03": {
+   "answer": null
+  },
+  "HV3-RELATIONAL_QUERY-04": {
+   "answer": 2
+  },
+  "HV3-RELATIONAL_QUERY-05": {
+   "answer": null
+  },
+  "HV3-TRUTH_CYCLE-01": {
+   "answer": [
+    [
+     1,
+     0,
+     1,
+     0,
+     0,
+     1,
+     1,
+     1,
+     0
+    ]
+   ]
+  },
+  "HV3-TRUTH_CYCLE-02": {
+   "answer": 1
+  },
+  "HV3-TRUTH_CYCLE-03": {
+   "answer": [
+    [
+     5,
+     2
+    ],
+    [
+     7,
+     1
+    ],
+    [
+     8,
+     1
+    ],
+    [
+     10,
+     1
+    ]
+   ]
+  },
+  "HV3-TRUTH_CYCLE-04": {
+   "answer": {
+    "first": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     0,
+     1,
+     0
+    ],
+    "last": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     0,
+     1,
+     0
+    ]
+   }
+  },
+  "HV3-TRUTH_CYCLE-05": {
+   "answer": [
+    24,
+    1
+   ]
+  },
+  "HV3-TRANSACTION_LOG-01": {
+   "answer": [
+    7,
+    2,
+    6,
+    -1,
+    1
+   ]
+  },
+  "HV3-TRANSACTION_LOG-02": {
+   "answer": [
+    31,
+    61,
+    -56,
+    -11
+   ]
+  },
+  "HV3-TRANSACTION_LOG-03": {
+   "answer": {
+    "value": 4,
+    "time": 3
+   }
+  },
+  "HV3-TRANSACTION_LOG-04": {
+   "answer": 13
+  },
+  "HV3-TRANSACTION_LOG-05": {
+   "answer": [
+    5,
+    5,
+    3,
+    3
+   ]
+  },
+  "HV3-MATCHING_CLUES-01": {
+   "answer": [
+    [
+     3,
+     1,
+     2,
+     0,
+     4
+    ]
+   ]
+  },
+  "HV3-MATCHING_CLUES-02": {
+   "answer": 3
+  },
+  "HV3-MATCHING_CLUES-03": {
+   "answer": [
+    [
+     62,
+     1
+    ],
+    [
+     69,
+     10
+    ],
+    [
+     76,
+     2
+    ],
+    [
+     83,
+     3
+    ]
+   ]
+  },
+  "HV3-MATCHING_CLUES-04": {
+   "answer": {
+    "first": [
+     0,
+     6,
+     5,
+     2,
+     3,
+     4,
+     1
+    ],
+    "last": [
+     6,
+     5,
+     3,
+     4,
+     0,
+     2,
+     1
+    ]
+   }
+  },
+  "HV3-MATCHING_CLUES-05": {
+   "answer": null
+  },
+  "HV3-SET_MEMBERSHIP-01": {
+   "answer": [
+    [
+     0,
+     1,
+     0,
+     2,
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     1,
+     1,
+     2,
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     1,
+     2,
+     2,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     2,
+     0,
+     1,
+     0,
+     2,
+     1
+    ],
+    [
+     0,
+     2,
+     1,
+     1,
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     2,
+     2,
+     1,
+     0,
+     0,
+     1
+    ],
+    [
+     1,
+     0,
+     0,
+     2,
+     0,
+     2,
+     1
+    ],
+    [
+     1,
+     0,
+     1,
+     2,
+     0,
+     1,
+     1
+    ],
+    [
+     1,
+     0,
+     2,
+     2,
+     0,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     0,
+     1,
+     0,
+     2,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     2,
+     1,
+     0,
+     0,
+     1
+    ],
+    [
+     1,
+     2,
+     0,
+     0,
+     0,
+     2,
+     1
+    ],
+    [
+     1,
+     2,
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    [
+     1,
+     2,
+     2,
+     0,
+     0,
+     0,
+     1
+    ],
+    [
+     2,
+     0,
+     0,
+     1,
+     0,
+     2,
+     1
+    ],
+    [
+     2,
+     0,
+     1,
+     1,
+     0,
+     1,
+     1
+    ],
+    [
+     2,
+     0,
+     2,
+     1,
+     0,
+     0,
+     1
+    ],
+    [
+     2,
+     1,
+     0,
+     0,
+     0,
+     2,
+     1
+    ],
+    [
+     2,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    [
+     2,
+     1,
+     2,
+     0,
+     0,
+     0,
+     1
+    ]
+   ]
+  },
+  "HV3-SET_MEMBERSHIP-02": {
+   "answer": 2
+  },
+  "HV3-SET_MEMBERSHIP-03": {
+   "answer": [
+    [
+     6,
+     1
+    ],
+    [
+     7,
+     2
+    ],
+    [
+     8,
+     1
+    ]
+   ]
+  },
+  "HV3-SET_MEMBERSHIP-04": {
+   "answer": {
+    "first": [
+     0,
+     1,
+     1,
+     2,
+     1,
+     0,
+     0
+    ],
+    "last": [
+     1,
+     1,
+     0,
+     1,
+     0,
+     1,
+     1
+    ]
+   }
+  },
+  "HV3-SET_MEMBERSHIP-05": {
+   "answer": [
+    17,
+    2
+   ]
+  },
+  "HV3-CELLULAR_RING-01": {
+   "answer": [
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+   ]
+  },
+  "HV3-CELLULAR_RING-02": {
+   "answer": null
+  },
+  "HV3-CELLULAR_RING-03": {
+   "answer": 80
+  },
+  "HV3-CELLULAR_RING-04": {
+   "answer": 5
+  },
+  "HV3-CELLULAR_RING-05": {
+   "answer": 9
+  },
+  "HV3-DFA_LANGUAGE-01": {
+   "answer": [
+    "001010",
+    "010010",
+    "100010",
+    "101000"
+   ]
+  },
+  "HV3-DFA_LANGUAGE-02": {
+   "answer": 1
+  },
+  "HV3-DFA_LANGUAGE-03": {
+   "answer": [
+    [
+     2,
+     1
+    ],
+    [
+     3,
+     2
+    ],
+    [
+     4,
+     1
+    ],
+    [
+     5,
+     4
+    ]
+   ]
+  },
+  "HV3-DFA_LANGUAGE-04": {
+   "answer": {
+    "first": "00101001",
+    "last": "10100010"
+   }
+  },
+  "HV3-DFA_LANGUAGE-05": {
+   "answer": [
+    19,
+    2
+   ]
+  },
+  "HV3-POSET_IDEALS-01": {
+   "answer": [
+    [
+     0,
+     1,
+     2,
+     4,
+     5
+    ],
+    [
+     0,
+     1,
+     2,
+     5,
+     6
+    ],
+    [
+     0,
+     1,
+     2,
+     5,
+     7
+    ],
+    [
+     0,
+     1,
+     2,
+     7,
+     8
+    ],
+    [
+     0,
+     2,
+     4,
+     5,
+     6
+    ],
+    [
+     0,
+     2,
+     4,
+     5,
+     7
+    ],
+    [
+     0,
+     2,
+     5,
+     6,
+     7
+    ],
+    [
+     0,
+     2,
+     5,
+     7,
+     8
+    ],
+    [
+     0,
+     4,
+     5,
+     7,
+     8
+    ],
+    [
+     1,
+     2,
+     4,
+     5,
+     6
+    ]
+   ]
+  },
+  "HV3-POSET_IDEALS-02": {
+   "answer": 4
+  },
+  "HV3-POSET_IDEALS-03": {
+   "answer": [
+    [
+     10,
+     1
+    ],
+    [
+     12,
+     1
+    ],
+    [
+     13,
+     1
+    ],
+    [
+     14,
+     1
+    ],
+    [
+     15,
+     1
+    ],
+    [
+     16,
+     1
+    ],
+    [
+     17,
+     1
+    ],
+    [
+     20,
+     2
+    ],
+    [
+     21,
+     1
+    ],
+    [
+     22,
+     1
+    ]
+   ]
+  },
+  "HV3-POSET_IDEALS-04": {
+   "answer": {
+    "first": [
+     0,
+     1,
+     4,
+     8
+    ],
+    "last": [
+     6,
+     8,
+     9,
+     11
+    ]
+   }
+  },
+  "HV3-POSET_IDEALS-05": {
+   "answer": [
+    318,
+    13
+   ]
+  }
+ }
+}
