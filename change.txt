@@ -1,0 +1,33 @@
+yeh
+Compared with [`qwen3.5-9b_analysis`](https://github.com/m-oonlight/qwen3.5-9b_analysis), these are the changes:
+
+| Item | Before | Current |
+|---|---|---|
+| Trials | Three seeds: 73191–73193 | **One pass, seed 73191** |
+| Question order | Shuffled per seed | **Original exam order**, identical across models |
+| CPU/GPU placement | First 30 layers’ MoE experts on CPU for every quantization | **Placement may vary per quantization** to use more GPU; recorded per model |
+| RAM prompt cache | Earlier documentation left the default unresolved | **Explicitly disabled: `--cache-ram 0`** |
+| Exam references | Some configuration text still referenced the old 60-question exam | **Current 250-question exam and hashes** |
+| Coding grading | Earlier workflow graded between questions | **After all inference finishes and the model shuts down** |
+| Automation | Earlier scripts/manual workflow | One model-argument script, resume/checkpoints, separate regrading, GitHub uploads and quiet progress |
+
+The **exam cleanup** changed wording in all 250 prompts:
+
+- Removed redundant generator metadata, unused definitions/rules and duplicated explanations.
+- Removed unused coding input fields; clarified some output descriptions.
+- Removed the top-level system prompt. Each request now contains only the question.
+- **Question IDs, order, categories and intended answers stayed unchanged.**
+
+The **hidden tests** changed only their inputs and grading notes:
+
+- Removed **1,233 unused fields across 1,183 cases**.
+- All retained input values and **all 2,468 expected outputs stayed unchanged**.
+- Explicitly documented the existing **20-second wall limit**.
+
+The **answer key is byte-for-byte unchanged**.
+
+The main generation settings also stayed unchanged: **131,072 context, 16,384 thinking ceiling, 24,576 total output ceiling, sampling controls, FP16 KV cache, and pinned llama.cpp commit**. The original repository already specified **Qwen3.6-35B-A3B**, despite its older name.
+
+The pilot’s historical configuration was preserved. Its results weren’t rewritten to pretend it used the new workflow.
+
+[Exact exam diff](https://github.com/m-oonlight/qwen-quantization-study/blob/main/handoff/exam-cleanup.diff) · [File hashes and change counts](https://github.com/m-oonlight/qwen-quantization-study/blob/main/handoff/changes-from-original.json)
